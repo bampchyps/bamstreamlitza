@@ -111,22 +111,22 @@ midpointB = (np.average(dataB["latstop"]), np.average(dataB["lonstop"]))
 
 row2_1, row2_2= st.columns((1,1))
 with row2_1:
-    st.write('Origin Dataframe Start ',str(selected_date),'/1/2019')#str(selected_date)
+    st.write('**Origin Dataframe Start** ',str(selected_date),'/1/2019')#str(selected_date)
     data_A = dataA[['latstartl', 'lonstartl','start']]
     st.dataframe(data_A)
 
 with row2_2:
-    st.write('Destination Dataframe Stop ',str(selected_date),'/1/2019')#str(selected_date)
+    st.write('**Destination Dataframe Stop** ',str(selected_date),'/1/2019')#str(selected_date)
     data_B = dataB[['latstop','lonstop','stop']]
     st.dataframe(data_B)
 
 row3_1, row3_2= st.columns((1,1))
 with row3_1:
-    st.write("Origin location from %i:00 to %i:00" % (hour_selected, (hour_selected+3) % 24))
+    st.write("**Origin location from %i:00 to %i:00**" % (hour_selected, (hour_selected+3) % 24))
     mapl(data_A, midpointA[0], midpointA[1], 11)
 
 with row3_2:
-    st.write("Destination location from %i:00 to %i:00" % (hour_selected, (hour_selected+3) % 24))
+    st.write("**Destination location from %i:00 to %i:00**" % (hour_selected, (hour_selected+3) % 24))
     mapr(data_B, midpointB[0], midpointB[1], 11)
 
 
