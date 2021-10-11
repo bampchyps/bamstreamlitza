@@ -105,8 +105,8 @@ start = "start"
 stop = "stop"
 dataA = data[data[start].dt.hour <= hour_selected+3]
 dataB = data[data[stop].dt.hour <= hour_selected+3]
-midpointA = (np.average(dataA["latstartl"]), np.average(A["lonstartl"]))
-midpointB = (np.average(dataB["latstop"]), np.average(B["lonstop"]))
+midpointA = (np.average(dataA["latstartl"]), np.average(dataA["lonstartl"]))
+midpointB = (np.average(dataB["latstop"]), np.average(dataB["lonstop"]))
 
 
 row2_1, row2_2= st.columns((1,1))
