@@ -112,12 +112,12 @@ midpointB = (np.average(dataB["latstop"]), np.average(B["lonstop"]))
 row2_1, row2_2= st.columns((1,1))
 with row2_1:
     st.write('Origin Dataframe Start ',str(selected_date),'/1/2019')#str(selected_date)
-    data_A = dataA[['latstartl', 'lonstartl','timestart']]
+    data_A = dataA[['latstartl', 'lonstartl','start']]
     st.dataframe(data_A)
 
 with row2_2:
     st.write('Destination Dataframe Stop ',str(selected_date),'/1/2019')#str(selected_date)
-    data_B = dataB[['latstop','lonstop','timestop']]
+    data_B = dataB[['latstop','lonstop','stop']]
     st.dataframe(data_B)
 
 row3_1, row3_2= st.columns((1,1))
