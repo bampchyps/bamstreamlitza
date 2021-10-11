@@ -24,8 +24,6 @@ import pydeck as pdk
 # SETTING PAGE CONFIG TO WIDE MODE
 st.set_page_config(layout="wide")
 
-#Title
-st.title('Origin-Destination (Sirapob Wutthinuntiwong)')
 
 # LAYING OUT THE TOP SECTION OF THE APP
 row1_1, row1_2 = st.columns((2,3))
@@ -100,28 +98,28 @@ def mapr(data, lat, lon, zoom):
     ))
 
 #data = df[df[DATE_TIME].dt.hour == hour_selected]
-data['timestart'] = pd.to_datetime(data['timestart'])
-data['timestop'] = pd.to_datetime(data['timestop'])
+data['start'] = pd.to_datetime(data['start'])
+data['stop'] = pd.to_datetime(data['stop'])
 
 # LAYING OUT THE TOP SECTION OF THE APP
-timestart = "timestart"
-timestop = "timestop"
-A = data[data[timestart].dt.hour <= hour_selected+3]
-B = data[data[timestop].dt.hour <= hour_selected+3]
-midpointA = (np.average(A["latstartl"]), np.average(A["lonstartl"]))
-midpointB = (np.average(B["latstop"]), np.average(B["lonstop"]))
+start = "start"
+stop = "stop"
+dataA = data[data[start].dt.hour <= hour_selected+3]
+dataB = data[data[stop].dt.hour <= hour_selected+3]
+midpointA = (np.average(dataA["latstartl"]), np.average(dataA["lonstartl"]))
+midpointB = (np.average(dataB["latstop"]), np.average(dataB["lonstop"]))
 
 
 row2_1, row2_2= st.columns((1,1))
 with row2_1:
     st.write('**Origin Dataframe Start** ',str(selected_date),'/1/2019')#str(selected_date)
-    dataA = A[['latstartl', 'lonstartl','timestart']]
-    st.dataframe(dataA)
+    data_A = dataA[['latstartl', 'lonstartl','start']]
+    st.dataframe(data_A)
 
 with row2_2:
     st.write('**Destination Dataframe Stop** ',str(selected_date),'/1/2019')#str(selected_date)
-    dataB = B[['latstop','lonstop','timestop']]
-    st.dataframe(dataB)
+    data_B = dataB[['latstop','lonstop','stop']]
+    st.dataframe(data_B)
 
 row3_1, row3_2= st.columns((1,1))
 with row3_1:
@@ -135,19 +133,19 @@ with row3_2:
 
 # FILTERING DATA FOR THE HISTOGRAM #START
 filtered = data[
-    (data[timestart].dt.hour >= hour_selected) & (data[timestart].dt.hour < (hour_selected + 3))
+    (data[start].dt.hour >= hour_selected) & (data[start].dt.hour < (hour_selected + 3))
     ]
 
-hist = np.histogram(filtered[timestart].dt.minute, bins=60, range=(0, 60))[0]
+hist = np.histogram(filtered[start].dt.minute, bins=60, range=(0, 60))[0]
 
 chart_data = pd.DataFrame({"minute": range(60), "volume": hist})
 
 # FILTERING DATA FOR THE HISTOGRAM #STOP
 filtered = data[
-    (data[timestop].dt.hour >= hour_selected) & (data[timestop].dt.hour < (hour_selected + 3))
+    (data[stop].dt.hour >= hour_selected) & (data[stop].dt.hour < (hour_selected + 3))
     ]
 
-hist = np.histogram(filtered[timestop].dt.minute, bins=60, range=(0, 60))[0]
+hist = np.histogram(filtered[stop].dt.minute, bins=60, range=(0, 60))[0]
 
 chart_data = pd.DataFrame({"minute": range(60), "volume": hist})
 
