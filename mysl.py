@@ -24,9 +24,6 @@ import pydeck as pdk
 # SETTING PAGE CONFIG TO WIDE MODE
 st.set_page_config(layout="wide")
 
-#Title
-st.title('Origin-Destination (Sirapob Wutthinuntiwong)')
-
 # LAYING OUT THE TOP SECTION OF THE APP
 row1_1, row1_2 = st.columns((2,3))
 with row1_1:
