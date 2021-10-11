@@ -111,22 +111,22 @@ midpointB = (np.average(B["latstop"]), np.average(B["lonstop"]))
 
 row2_1, row2_2= st.columns((1,1))
 with row2_1:
-    st.write('**Origin Dataframe Start** ',str(selected_date),'/1/2019')#str(selected_date)
+    st.write('**Origin_Start** ',str(selected_date),'/1/2019')#str(selected_date)
     dataA = A[['latstartl', 'lonstartl','timestart']]
     st.dataframe(dataA)
 
 with row2_2:
-    st.write('**Destination Dataframe Stop** ',str(selected_date),'/1/2019')#str(selected_date)
+    st.write('**Destination_Stop** ',str(selected_date),'/1/2019')#str(selected_date)
     dataB = B[['latstop','lonstop','timestop']]
     st.dataframe(dataB)
 
 row3_1, row3_2= st.columns((1,1))
 with row3_1:
-    st.write("**Origin location from %i:00 to %i:00**" % (hour_selected, (hour_selected+3) % 24))
+    st.write("**Origin location %i:00 to %i:00**" % (hour_selected, (hour_selected+3) % 24))
     mapl(dataA, midpointA[0], midpointA[1], 11)
 
 with row3_2:
-    st.write("**Destination location from %i:00 to %i:00**" % (hour_selected, (hour_selected+3) % 24))
+    st.write("**Destination location %i:00 to %i:00**" % (hour_selected, (hour_selected+3) % 24))
     mapr(dataB, midpointB[0], midpointB[1], 11)
 
 
@@ -152,7 +152,7 @@ chart_data = pd.DataFrame({"minute": range(60), "volume": hist})
 
 st.write("")
 
-st.write("**Breakdown of coordinate per minute between %i:00 to %i:00**" % (hour_selected, (hour_selected + 3) % 24))
+st.write("**Breakdown %i:00 to %i:00**" % (hour_selected, (hour_selected + 3) % 24))
 
 st.altair_chart(alt.Chart(chart_data)
     .mark_area(
