@@ -98,13 +98,13 @@ def mapr(data, lat, lon, zoom):
     ))
 
 #data = df[df[DATE_TIME].dt.hour == hour_selected]
-data['start'] = pd.to_datetime(data['start'])
+data['startt'] = pd.to_datetime(data['startt'])
 data['stop'] = pd.to_datetime(data['stop'])
 
 # LAYING OUT THE TOP SECTION OF THE APP
-start = "start"
+start = "startt"
 stop = "stop"
-dataA = data[data[start].dt.hour <= hour_selected+3]
+dataA = data[data[startt].dt.hour <= hour_selected+3]
 dataB = data[data[stop].dt.hour <= hour_selected+3]
 midpointA = (np.average(dataA["latstartl"]), np.average(dataA["lonstartl"]))
 midpointB = (np.average(dataB["latstop"]), np.average(dataB["lonstop"]))
@@ -113,7 +113,7 @@ midpointB = (np.average(dataB["latstop"]), np.average(dataB["lonstop"]))
 row2_1, row2_2= st.columns((1,1))
 with row2_1:
     st.write('**Origin Dataframe Start** ',str(selected_date),'/1/2019')#str(selected_date)
-    data_A = dataA[['latstartl', 'lonstartl','start']]
+    data_A = dataA[['latstartl', 'lonstartl','startt']]
     st.dataframe(data_A)
 
 with row2_2:
@@ -133,10 +133,10 @@ with row3_2:
 
 # FILTERING DATA FOR THE HISTOGRAM #START
 filtered = data[
-    (data[start].dt.hour >= hour_selected) & (data[start].dt.hour < (hour_selected + 3))
+    (data[startt].dt.hour >= hour_selected) & (data[startt].dt.hour < (hour_selected + 3))
     ]
 
-hist = np.histogram(filtered[start].dt.minute, bins=60, range=(0, 60))[0]
+hist = np.histogram(filtered[startt].dt.minute, bins=60, range=(0, 60))[0]
 
 chart_data = pd.DataFrame({"minute": range(60), "volume": hist})
 
