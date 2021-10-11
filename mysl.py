@@ -162,6 +162,6 @@ st.altair_chart(alt.Chart(chart_data)
         y=alt.Y("volume:Q"),
         tooltip=['minute', 'volume']
     ).configure_mark(
-        opacity=0.2,
+        opacity=0.5,
         color='green'
     ), use_container_width=True)
