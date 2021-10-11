@@ -100,6 +100,7 @@ def mapr(data, lat, lon, zoom):
 data['start'] = pd.to_datetime(data['start'])
 data['stop'] = pd.to_datetime(data['stop'])
 
+
 # LAYING OUT THE TOP SECTION OF THE APP
 start = "start"
 stop = "stop"
